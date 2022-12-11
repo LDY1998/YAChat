@@ -24,18 +24,6 @@ std::string make_daytime_string()
 namespace server
 {
 
-    template <typename SocketTy>
-    class IConnect
-    {
-    public:
-        typedef boost::shared_ptr<IConnect> ptr;
-
-        virtual ptr create(boost::asio::io_context &io_context) = 0;
-
-    private:
-        SocketTy socket_;
-    };
-
     class TCPConnect : public boost::enable_shared_from_this<TCPConnect>
     {
     public:
@@ -119,7 +107,7 @@ namespace server
         void start_accept();
 
         /// Handle completion of an asynchronous accept operation.
-        void handle_accept(const boost::system::error_code &e);
+        void handle_accept(TCPConnect::ptr new_connection, const boost::system::error_code &e);
 
         /// Handle a request to stop the server.
         void handle_stop();
