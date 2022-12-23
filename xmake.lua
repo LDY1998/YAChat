@@ -1,4 +1,9 @@
+set_toolchains("clang")
+
 add_rules("mode.debug", "mode.release")
+
+add_requires("sqlpp11")
+
 
 target("hello")
     set_kind("binary")
@@ -10,6 +15,7 @@ target("client")
     add_ldflags("-pthread", "-fopenmp")
     add_files("./client/*.cpp")
 
+
 target("server")
     set_kind("binary")
     add_cxflags("-pthread")
@@ -17,3 +23,4 @@ target("server")
     add_cxflags("-lboost_thread")
     add_ldflags("-lboost_thread")
     add_files("./server/*.cpp")
+    add_packages("sqlpp11")

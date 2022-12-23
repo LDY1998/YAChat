@@ -6,6 +6,7 @@
 #include <boost/enable_shared_from_this.hpp>
 #include <boost/asio.hpp>
 #include <boost/noncopyable.hpp>
+#include "database/conn.h"
 
 using boost::asio::ip::tcp;
 
