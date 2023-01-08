@@ -12,4 +12,10 @@ namespace entity {
             user_ids.erase(id_iter);
         }
     }
+
+    void ChatSession::addChat(const std::string& chat) {
+        this->chats.push_back(chat);
+    }
+
+    
 }

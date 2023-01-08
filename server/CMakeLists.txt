@@ -4,15 +4,24 @@
 cmake_minimum_required (VERSION 3.10)
 project (server)
 
+find_package (Threads)
+
 # add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/../thirdparty/SQLiteCpp)
 
-target_link_libraries(server 
-    # SQLiteCpp
-    # sqlite3
-    pthread
-    dl
-    )
+# Poco Library setup
+find_library(Poco_LIBRARIES NAMES PocoFoundation PocoJSON PocoUtil PocoNet PocoSQL)
+
+if(NOT ${Poco_FOUND})
+    message(FATAL_ERROR "Poco C++ Libraries not found.")
+endif()
 
 
 
 add_executable(server "./server.cpp")
+target_link_libraries(server 
+    # SQLiteCpp
+    # sqlite3
+    ${CMAKE_THREAD_LIBS_INIT}
+    PocoFoundation PocoJSON PocoUtil PocoNet
+    # dl
+    )

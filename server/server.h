@@ -7,6 +7,8 @@
 #include <boost/asio.hpp>
 #include <boost/noncopyable.hpp>
 #include "database/conn.h"
+#include "apis/api.h"
+#include "apis/handler.h"
 
 using boost::asio::ip::tcp;
 
